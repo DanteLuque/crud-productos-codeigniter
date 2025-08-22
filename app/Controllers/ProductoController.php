@@ -26,17 +26,17 @@ class ProductoController extends BaseController
 
   public function editar($id = null)
   {
-    $libro = new Libro();
-    $datosLibro = $libro->where('id', $id)->first();
+    $producto = new Producto();
+    $datosProducto = $producto->where('id', $id)->first();
 
-    if (!$datosLibro) {
-      return $this->response->redirect(base_url('libros'));
+    if (!$datosProducto) {
+      return $this->response->redirect(base_url('/'));
     } else {
       $data['header'] = view('Layouts/header');
       $data['footer'] = view('Layouts/footer');
-      $data['libro'] = $datosLibro;
+      $data['producto'] = $datosProducto;
 
-      return view('libros/editar', $data);
+      return view('productos/editar', $data);
     }
 
   }
@@ -65,7 +65,7 @@ class ProductoController extends BaseController
       'imagen' => $imagenNombre,
       'descripcion' => $descripcion,
       'precio' => $precio,
-      'descuento' => $descuento 
+      'descuento' => $descuento
     ];
 
     $producto->insert($registro);
@@ -92,30 +92,40 @@ class ProductoController extends BaseController
 
   public function updateDB($id = null)
   {
-    $libro = new Libro();
-    $datosLibro = $libro->where('id', $id)->first();
-    $nombre = $this->request->getVar('nombre');
+    $producto = new Producto();
+    $datosProductos = $producto->where('id', $id)->first();
 
-    if ($imagen = $this->request->getFile('imagen')) {
+    $nombre = $this->request->getVar('nombre');
+    $descripcion = $this->request->getVar('descripcion');
+    $precio = $this->request->getVar('precio');
+    $descuento = $this->request->getVar('descuento');
+
+    $imagen = $this->request->getFile('imagen');
+
+    if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
       $newNameImage = $imagen->getRandomName();
       $imagen->move('../public/uploads/', $newNameImage);
+      $imagenNombre = $newNameImage;
 
       $newData = [
         'nombre' => $nombre,
-        'imagen' => $newNameImage
+        'imagen' => $imagenNombre,
+        'descripcion' => $descripcion,
+        'precio' => $precio,
+        'descuento' => $descuento
       ];
 
-      if ($datosLibro['imagen'] != '' && $datosLibro['imagen'] != null) {
-        $rutaImagen = '../public/uploads/' . $datosLibro['imagen'];
+      if ($datosProductos['imagen'] != '' && $datosProductos['imagen'] != null) {
+        $rutaImagen = '../public/uploads/' . $datosProductos['imagen'];
         if (file_exists($rutaImagen))
           unlink($rutaImagen);
       }
-
-      $libro->update($id, $newData);
-      return $this->response->redirect(base_url('libros'));
+      $producto->update($id, $newData);
+      return $this->response->redirect(base_url('/'));
 
     }
   }
+
 
 }
 
