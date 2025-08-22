@@ -40,7 +40,7 @@
           </div>
 
           <div class="card-footer d-flex justify-content-between bg-light">
-            <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i> Eliminar</button>
+            <a href="<?= base_url('productos/eliminar_db/')?><?=$producto['id']?>" class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i> Eliminar</a>
             <button class="btn btn-primary btn-sm">Editar</button>
           </div>
         </div>

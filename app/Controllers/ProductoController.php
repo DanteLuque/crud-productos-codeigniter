@@ -41,7 +41,6 @@ class ProductoController extends BaseController
 
   }
 
-  //Recibe datos desde la view y guarda en DB
   public function saveDB()
   {
     $producto = new Producto();
@@ -60,7 +59,7 @@ class ProductoController extends BaseController
     } else {
       $imagenNombre = null;
     }
-    
+
     $registro = [
       'nombre' => $nombre,
       'imagen' => $imagenNombre,
@@ -76,19 +75,19 @@ class ProductoController extends BaseController
 
   public function deleteDB($id = null)
   {
-    $libro = new Libro();
+    $producto = new Producto();
 
-    $datosLibro = $libro->where('id', $id)->first();
+    $datosProducto = $producto->where('id', $id)->first();
 
-    if ($datosLibro['imagen'] != '' && $datosLibro['imagen'] != null) {
-      $rutaImagen = '../public/uploads/' . $datosLibro['imagen'];
+    if ($datosProducto['imagen'] != '' && $datosProducto['imagen'] != null) {
+      $rutaImagen = '../public/uploads/' . $datosProducto['imagen'];
       if (file_exists($rutaImagen))
         unlink($rutaImagen); //eliminando archivo fisico del servidor
     }
 
-    $libro->where('id', $id)->delete($id);
+    $producto->where('id', $id)->delete($id);
 
-    return $this->response->redirect(base_url('libros'));
+    return $this->response->redirect(base_url('/'));
   }
 
   public function updateDB($id = null)
@@ -119,3 +118,4 @@ class ProductoController extends BaseController
   }
 
 }
+
