@@ -68,7 +68,8 @@ http://crud-productos-codeigniter.test
 | GET    | `/productos/eliminar_db/{id}`  | Eliminar producto (estado actual) |
 
 ## 📁 Estructura del proyecto
-danteluque-crud-productos-codeigniter/   
+danteluque-crud-productos-codeigniter/  
+``` 
 ├── .env.example                             # Plantilla de variables de entorno
 ├── app/
 │   ├── Controllers/
@@ -86,7 +87,7 @@ danteluque-crud-productos-codeigniter/
 │   ├── styles/common.css                    # Estilos globales
 │   └── uploads/                             # Carpeta destino de imágenes subidas
 └── composer.json                            # Dependencias PHP
-
+```
 ## 📝 Contribución
 
 Si deseas contribuir a este proyecto, por favor:
