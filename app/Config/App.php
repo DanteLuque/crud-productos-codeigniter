@@ -16,7 +16,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://productos.test';
+    public string $baseURL = 'http://crud-productos-codeigniter.test';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
