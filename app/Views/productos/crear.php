@@ -3,7 +3,7 @@
 <div class="container mt-2">
   <div class="my-2">
     <h4>Registro de productos</h4>
-    <a href="<?= base_url('productos') ?>">Volver</a>
+    <a href="<?= base_url('') ?>">Volver</a>
   </div>
 
   <form method="POST" action="<?= base_url('productos/save_db') ?>" enctype="multipart/form-data">

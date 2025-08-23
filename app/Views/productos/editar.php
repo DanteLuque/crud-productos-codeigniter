@@ -2,7 +2,7 @@
 
 <div class="container mt-2">
   <div class="my-2">
-    <h4>Registro de productos</h4>
+    <h4>Actualización de productos</h4>
     <a href="<?= base_url('/') ?>">Volver</a>
   </div>
 
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="card-footer text-end">
-        <a href="<?= base_url('productos') ?>" type="reset" class="btn btn-sm btn-outline-secondary">Cancelar</a>
+        <a href="<?= base_url('') ?>" type="reset" class="btn btn-sm btn-outline-secondary">Cancelar</a>
         <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
       </div>
     </div>
