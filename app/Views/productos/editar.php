@@ -24,10 +24,12 @@
               autofocus>
           </div>
 
+          <?php if($producto['imagen']){ ?>
           <div>
             <label for="preview">Imagen actual:</label>
             <img src="/uploads/<?= $producto['imagen']?>" width="85px" class="mt-3">
           </div>
+          <?php } ?>
 
           <div>
             <label for="descripcion" class="form-label">Descripción</label>

@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="card-footer text-end">
-        <a href="<?= base_url('productos') ?>" type="reset" class="btn btn-sm btn-outline-secondary">Cancelar</a>
+        <a href="<?= base_url('') ?>" type="reset" class="btn btn-sm btn-outline-secondary">Cancelar</a>
         <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
       </div>
     </div>

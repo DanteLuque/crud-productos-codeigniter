@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\Producto;
 
 class ProductoController extends BaseController
@@ -38,7 +39,6 @@ class ProductoController extends BaseController
 
       return view('productos/editar', $data);
     }
-
   }
 
   public function saveDB()
@@ -93,39 +93,33 @@ class ProductoController extends BaseController
   public function updateDB($id = null)
   {
     $producto = new Producto();
-    $datosProductos = $producto->where('id', $id)->first();
+    $actual = $producto->find($id);
 
-    $nombre = $this->request->getVar('nombre');
-    $descripcion = $this->request->getVar('descripcion');
-    $precio = $this->request->getVar('precio');
-    $descuento = $this->request->getVar('descuento');
+    if (!$actual) return redirect()->to(base_url('/'));
+    
+    $data = [
+      'nombre'     => $this->request->getPost('nombre'),
+      'descripcion' => $this->request->getPost('descripcion'),
+      'precio'     => (float) $this->request->getPost('precio'),
+      'descuento'  => (int) ($this->request->getPost('descuento') ?? 0),
+    ];
 
     $imagen = $this->request->getFile('imagen');
 
-    if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
-      $newNameImage = $imagen->getRandomName();
-      $imagen->move('../public/uploads/', $newNameImage);
-      $imagenNombre = $newNameImage;
+    if ($imagen && $imagen->isValid() && $imagen->getSize() > 0) {
+      $newName = $imagen->getRandomName();
+      $uploadDir = FCPATH . 'uploads';
+      $imagen->move($uploadDir, $newName);
 
-      $newData = [
-        'nombre' => $nombre,
-        'imagen' => $imagenNombre,
-        'descripcion' => $descripcion,
-        'precio' => $precio,
-        'descuento' => $descuento
-      ];
+      $data['imagen'] = $newName;
 
-      if ($datosProductos['imagen'] != '' && $datosProductos['imagen'] != null) {
-        $rutaImagen = '../public/uploads/' . $datosProductos['imagen'];
-        if (file_exists($rutaImagen))
-          unlink($rutaImagen);
+      if (!empty($actual['imagen'])) {
+        $old = $uploadDir . DIRECTORY_SEPARATOR . $actual['imagen'];
+        if (is_file($old)) @unlink($old);
       }
-      $producto->update($id, $newData);
-      return $this->response->redirect(base_url('/'));
-
     }
+
+    $producto->update($id, $data);
+    return redirect()->to(base_url('/'));
   }
-
-
 }
-

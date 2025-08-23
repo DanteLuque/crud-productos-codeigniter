@@ -31,7 +31,7 @@
 
               <!-- precio con descuento -->
               <?php if ($producto['descuento']) { ?>
-                <span class="h5 mb-0 text-success">
+                <span class="h3 mb-0 text-success">
                   $<?= number_format($producto['precio'] - $producto['precio'] * ($producto['descuento'] / 100), 2) ?>
                 </span>
               <?php } ?>
