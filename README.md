@@ -21,7 +21,7 @@ Aplicación simple para gestionar productos con imagen, construida con **PHP 8.1
 1. Clona el repositorio: En caso de estar usando Laragon, debe clonar el repositorio dentro del `C:\laragon\www\`
 
 ```bash
-git clone https://github.com/<tu-usuario>/danteluque-crud-productos-codeigniter.git
+git clone https://github.com/DanteLuque/crud-productos-codeigniter.git
 cd danteluque-crud-productos-codeigniter
 ```
 2. Instala dependencias:
