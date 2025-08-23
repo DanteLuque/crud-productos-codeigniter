@@ -1,68 +1,99 @@
-# CodeIgniter 4 Application Starter
 
-## What is CodeIgniter?
+# CRUD de Productos – CodeIgniter 4
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Aplicación simple para gestionar productos con imagen, construida con **PHP 8.1+**, **CodeIgniter 4**, **MySQL** y **Bootstrap 5**.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 🔄 Características
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- CRUD completo de productos.
+- Carga de imagen por producto (se guarda en `public/uploads/`) y reemplazo/borrado seguro al actualizar/eliminar.
+- Listado en tarjetas con precio original, precio con descuento y porcentaje.
+- Interfaz responsiva con Bootstrap 5.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## 📅 Requisitos previos
 
-## Installation & updates
+- 🐘 PHP **8.1 o superior** (con extensiones **intl** y **mbstring** habilitadas).
+- 🛠️ Composer 2.x
+- 🐬 MySQL 5.7+ / MariaDB
+-  📦 Servidor local (Laragon/XAMPP) o vhost apuntando a `public/`.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 📚 Instalación
+1. Clona el repositorio: En caso de estar usando Laragon, debe clonar el repositorio dentro del `C:\laragon\www\`
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+```bash
+git clone https://github.com/<tu-usuario>/danteluque-crud-productos-codeigniter.git
+cd danteluque-crud-productos-codeigniter
+```
+2. Instala dependencias:
+```bash
+composer install
+```
+3. Copiar el archivo .env.example y pegar el contenido en un archivo nuevo llamado `.env` en la ruta raíz.
 
-## Setup
+4. Edita en `.env` los valores de conexión:
+```bash
+database.default.hostname = localhost
+database.default.database = productos
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+5.  Crea la base de datos y la tabla:
+-   Crea la base `productos` en tu motor (si no existe).
+-   Importa el script:
+```
+app/Database/scripts/base.sql
+```
+6. Asegúrate de que el directorio de imágenes exista y sea escribible:
+```
+public/uploads/
+```
+## 🚀 Ejecución
+En caso de estar usando Laragon, ya viene preconfigurado un vhost que apunta a nuestro proyecto, solo debe abrir el navegador y usar esta URL local:
+```
+http://crud-productos-codeigniter.test
+```
+> Si cambiaste el nombre de la carpeta después de clonar el repositorio, debe modificar la variable baseURL en `app/Config/App.php` para que coincida con tu URL local
 
-## Important Change with index.php
+## 🧭 Rutas principales
+| Método | Ruta                           | Descripción                       |
+|--------|--------------------------------|-----------------------------------|
+| GET    | `/`                            | Listar productos                  |
+| GET    | `/productos/crear`             | Formulario de creación            |
+| GET    | `/productos/editar/{id}`       | Formulario de edición             |
+| POST   | `/productos/save_db`           | Guardar nuevo producto            |
+| POST   | `/productos/update_db/{id}`    | Actualizar producto               |
+| GET    | `/productos/eliminar_db/{id}`  | Eliminar producto (estado actual) |
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## 📁 Estructura del proyecto
+danteluque-crud-productos-codeigniter/   
+├── .env.example                             # Plantilla de variables de entorno
+├── app/
+│   ├── Controllers/
+│   │   └── ProductoController.php           # Controlador de acciones CRUD
+│   ├── Models/
+│   │   └── Producto.php                     # Modelo CI4: tabla, primaryKey y allowedFields
+│   ├── Views/
+│   │   ├── Layouts/                         # Layouts base (header.php, footer.php) 
+│   │   └── productos/                       # Vistas de módulo producto
+│   └── Database/
+│       └── scripts/
+│           └── base.sql                     # Script SQL para crear db y estructura inicial
+├── public/
+│   ├── index.php                            # Front controller de CodeIgniter (punto de entrada de la app)
+│   ├── styles/common.css                    # Estilos globales
+│   └── uploads/                             # Carpeta destino de imágenes subidas
+└── composer.json                            # Dependencias PHP
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## 📝 Contribución
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Si deseas contribuir a este proyecto, por favor:
 
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+1.  Haz un fork del repositorio
+2.  Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3.  Realiza tus cambios
+4.  Haz commit de tus cambios (`git commit -m 'Añadir nueva funcionalidad'`)
+5.  Sube tus cambios (`git push origin feature/amazing-feature`)
+6.  Abre un Pull Request
