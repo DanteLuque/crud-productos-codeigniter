@@ -9,23 +9,15 @@ class ProductoController extends BaseController
 {
   public function index(): string
   {
-    $data['header'] = view('Layouts/header');
-    $data['footer'] = view('Layouts/footer');
-
     $producto = new Producto();
     $data['productos'] = $producto->listar();
-
     return view('productos/listar', $data);
   }
 
   public function crear(): string
   {
-    $data['header'] = view('Layouts/header');
-    $data['footer'] = view('Layouts/footer');
-
     $catModel = new CatProducto();
     $data['categorias'] = $catModel->listar();
-
     return view('productos/crear', $data);
   }
 
@@ -35,10 +27,7 @@ class ProductoController extends BaseController
     $datosProducto = $producto->where('id', $id)->first();
     if (!$datosProducto) return redirect()->to(base_url('/'));
 
-    $data['header'] = view('Layouts/header');
-    $data['footer'] = view('Layouts/footer');
     $data['producto'] = $datosProducto;
-
     $catModel = new CatProducto();
     $data['categorias'] = $catModel->listar();
 

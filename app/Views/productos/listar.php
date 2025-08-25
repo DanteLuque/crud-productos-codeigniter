@@ -1,4 +1,5 @@
-<?= $header; ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
 <div class="container mt-5">
   <h2 class="mb-4"> Productos disponibles </h2>
@@ -58,5 +59,4 @@
   </div>
 </div>
 
-
-<?= $footer; ?>
+<?= $this->endSection() ?>

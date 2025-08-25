@@ -1,4 +1,5 @@
-<?= $header; ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
 <div class="container mt-2">
   <div class="my-2">
@@ -71,4 +72,4 @@
   </form>
 </div>
 
-<?= $footer; ?>
+<?= $this->endSection() ?>
