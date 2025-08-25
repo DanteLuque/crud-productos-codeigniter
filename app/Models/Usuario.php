@@ -8,8 +8,6 @@ class Usuario extends BaseModel
 {
     protected $table      = 'usuarios';
     protected $primaryKey = 'id';
-    protected $returnType = 'array';
-
     protected $allowedFields = [
         'UUID',
         'nombres',
@@ -41,7 +39,7 @@ class Usuario extends BaseModel
         return $this->update($id, $data);
     }
 
-    public function softDeleteUsuario(int $id): bool
+    public function eliminar(int $id): bool
     {
         return $this->delete($id);
     }

@@ -1,6 +1,5 @@
 <?php
 
-/** @var \CodeIgniter\Router\RouteCollection $routes */
 $routes->group('productos', static function ($routes) {
     // Render views
     $routes->get('crear', 'ProductoController::crear');

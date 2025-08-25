@@ -11,10 +11,9 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<?= base_url() ?>">Tiendia :D</a>
+      <a class="navbar-brand" href="<?= base_url() ?>">Tiendita :D</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,11 +24,21 @@
             <a class="nav-link" href="<?= base_url() ?>">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('productos/crear') ?>">Registrar producto</a>
+            <a class="nav-link" href="<?= base_url('productos/crear') ?>">Crear producto</a>
           </li>
         </ul>
+        <span class="navbar-text">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/login') ?>">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/register') ?>">Registrarse</a>
+            </li>
+          </ul>
+        </span>
+
       </div>
     </div>
   </nav>
-
-  <main></main>
+  <main>
