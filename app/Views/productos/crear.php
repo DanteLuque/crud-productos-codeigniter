@@ -3,7 +3,7 @@
 <div class="container mt-2">
   <div class="my-2">
     <h4>Registro de productos</h4>
-    <a href="<?= base_url('') ?>">Volver</a>
+    <a href="<?= base_url() ?>">Volver</a>
   </div>
 
   <form method="POST" action="<?= base_url('productos/save_db') ?>" enctype="multipart/form-data">
@@ -33,8 +33,18 @@
           </div>
 
           <div>
-            <label for="nombre">Precio</label>
-            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" class="form-control" >
+            <label for="nombre">Descuento</label>
+            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" class="form-control">
+          </div>
+
+          <div>
+            <label for="categoria_id">Categoría</label>
+            <select name="categoria_id" id="categoria_id" class="form-control" required>
+              <option value="">-- Seleccione --</option>
+              <?php foreach ($categorias as $categoria): ?>
+                <option value="<?= $categoria['id'] ?>"><?= esc($categoria['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
 
         </div>

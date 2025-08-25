@@ -14,8 +14,7 @@
           <div>
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="nombre" autofocus required
-            value="<?=$producto['nombre']?>"
-            >
+              value="<?= $producto['nombre'] ?>">
           </div>
 
           <div>
@@ -24,31 +23,42 @@
               autofocus>
           </div>
 
-          <?php if($producto['imagen']){ ?>
-          <div>
-            <label for="preview">Imagen actual:</label>
-            <img src="/uploads/<?= $producto['imagen']?>" width="85px" class="mt-3">
-          </div>
+          <?php if ($producto['imagen']) { ?>
+            <div>
+              <label for="preview">Imagen actual:</label>
+              <img src="/uploads/<?= $producto['imagen'] ?>" width="85px" class="mt-3">
+            </div>
           <?php } ?>
 
           <div>
             <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required><?=$producto['descripcion']?></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required><?= $producto['descripcion'] ?></textarea>
           </div>
 
           <div>
             <label for="nombre">Precio</label>
             <input type="number" id="precio" name="precio" min="0" step="any" placeholder="0.00" class="form-control"
               required
-              value="<?=$producto['precio']?>"
-              >
+              value="<?= $producto['precio'] ?>">
           </div>
 
           <div>
-            <label for="nombre">Precio</label>
+            <label for="nombre">Descuento</label>
             <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" class="form-control"
-            value="<?=$producto['descuento']?>"
-            >
+              value="<?= $producto['descuento'] ?>">
+          </div>
+
+          <div>
+            <label for="categoria_id">Categoría</label>
+            <select name="categoria_id" id="categoria_id" class="form-control" required>
+              <option value="">-- Seleccione --</option>
+              <?php foreach ($categorias as $categoria): ?>
+                <option value="<?= $categoria['id'] ?>"
+                  <?= ($categoria['id'] == $producto['categoria_id']) ? 'selected' : '' ?>>
+                  <?= esc($categoria['nombre']) ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
           </div>
 
         </div>
