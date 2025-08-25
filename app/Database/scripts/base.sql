@@ -1,19 +1,116 @@
-CREATE DATABASE PRODUCTOS;
-USE PRODUCTOS;
+CREATE DATABASE TIENDITA;
+USE TIENDITA;
 
-CREATE TABLE PRODUCTOS(
-	id 	INT AUTO_INCREMENT	PRIMARY KEY,
-	nombre VARCHAR(150) NOT NULL,
-	imagen TEXT NULL,
-	descripcion TEXT NOT NULL,
-	precio DECIMAL(7,2) NOT NULL,
-	descuento INT	NULL
+-- ubigeo/*
+CREATE TABLE departamentos (
+  id CHAR(2) PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE provincias (
+  id CHAR(4) PRIMARY KEY,
+  departamento_id CHAR(2) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  FOREIGN KEY (departamento_id) REFERENCES departamentos(id)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE distritos (
+  id CHAR(6) PRIMARY KEY,
+  provincia_id CHAR(4) NOT NULL,
+  name VARCHAR(120) NOT NULL,
+  CONSTRAINT fk_dist_prov FOREIGN KEY (provincia_id) REFERENCES provincias(id)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+-- */ubigeo
+
+-- mantenimiento/*
+CREATE TABLE tipo_doi(
+	id					BIGINT AUTO_INCREMENT PRIMARY KEY,
+	nombre			VARCHAR(70) NOT NULL,
+	num_digitos 	INT NOT NULL,
+	created_at		DATETIME NULL,
+	updated_at		DATETIME NULL,
+	deleted_at		DATETIME NULL
 )ENGINE=INNODB;
 
-INSERT INTO PRODUCTOS VALUES
-	(NULL, 
-	'CABLE INALAMBRICO', 
-	NULL, 
-	'Es un super cable bien chevere', 
-	20.99,
-	10);
+CREATE TABLE cat_productos(
+	id					BIGINT AUTO_INCREMENT PRIMARY KEY,
+	nombre 		 	VARCHAR(70) NOT NULL,
+	descripcion		TEXT NULL,
+	created_at		DATETIME NULL,
+	updated_at		DATETIME NULL,
+	deleted_at		DATETIME NULL
+)ENGINE=INNODB;
+-- */mantenimiento
+
+CREATE TABLE productos(
+	id 				BIGINT AUTO_INCREMENT PRIMARY KEY,
+	nombre 			VARCHAR(150) NOT NULL,
+	imagen 			TEXT NULL,
+	descripcion 	TEXT NOT NULL,
+	precio 			DECIMAL(7,2) NOT NULL,
+	descuento 		INT NULL,
+	categoria_id	BIGINT NOT NULL,
+	created_at		DATETIME NULL,
+	updated_at		DATETIME NULL,
+	deleted_at		DATETIME NULL,
+	FOREIGN KEY (categoria_id) REFERENCES cat_productos(id)
+)ENGINE=INNODB;
+
+CREATE TABLE usuarios(
+	id						BIGINT AUTO_INCREMENT PRIMARY KEY,
+	UUID 					CHAR(36) NULL,
+	nombres				VARCHAR(255) NOT NULL,
+	apellidos			VARCHAR(255) NOT NULL,
+  	tipo_doi_id 		BIGINT NOT NULL, 
+  	num_doi 				VARCHAR(45) NOT NULL,
+	username 			VARCHAR(70) NOT NULL,
+	userpass 			VARCHAR(255) NOT NULL,
+	premium				BOOLEAN DEFAULT FALSE,
+	created_at			DATETIME NULL,
+	updated_at			DATETIME NULL,
+	deleted_at			DATETIME NULL,
+  	FOREIGN KEY (tipo_doi_id) REFERENCES tipo_doi(id)
+)ENGINE=INNODB;
+
+CREATE TABLE clientes(
+	id					BIGINT AUTO_INCREMENT PRIMARY KEY,
+	UUID 				CHAR(36) NULL,
+	usuario_id  	BIGINT NOT NULL,
+	email 			VARCHAR(70) NOT NULL,
+  	telefono    	VARCHAR(12) NULL,
+  	created_at		DATETIME NULL,
+	updated_at		DATETIME NULL,
+	deleted_at		DATETIME NULL,
+  	FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+)ENGINE=INNODB;
+
+CREATE TABLE vendedores(
+	id						BIGINT AUTO_INCREMENT PRIMARY KEY,
+	UUID 					CHAR(36) NULL,
+	usuario_id  		BIGINT NOT NULL,
+	email 				VARCHAR(70) NOT NULL,
+	telefono    		VARCHAR(12) NULL,
+	nombre_tienda 		VARCHAR(255) NOT NULL,
+	descripcion 		TEXT NOT NULL,
+  	created_at			DATETIME NULL,
+	updated_at			DATETIME NULL,
+	deleted_at			DATETIME NULL,
+	FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+)ENGINE=INNODB;
+
+CREATE TABLE direcciones(
+	id					BIGINT AUTO_INCREMENT PRIMARY KEY,
+	cliente_id		BIGINT NULL,
+	vendedor_id    BIGINT NULL,
+	ubigeo		   CHAR(6) NOT NULL,
+	direccion		TEXT NOT NULL,
+	referencia		TEXT NULL,
+	lat 				DECIMAL(10,8) NULL,
+	lng 				DECIMAL(11,8) NULL, 
+	created_at		DATETIME NULL,
+	updated_at		DATETIME NULL,
+	deleted_at		DATETIME NULL,
+	FOREIGN KEY (ubigeo) REFERENCES distritos(id),
+	FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+	FOREIGN KEY (vendedor_id) REFERENCES vendedores(id)
+)ENGINE=INNODB;
