@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // rutas por módulos
-require APPPATH . 'Routes/HomeRoutes.php';
 require APPPATH . 'Routes/AuthRoutes.php';
+require APPPATH . 'Routes/UbigeoRoutes.php';
+require APPPATH . 'Routes/HomeRoutes.php';
 require APPPATH . 'Routes/ProductoRoutes.php';

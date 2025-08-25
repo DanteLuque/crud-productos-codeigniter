@@ -12,4 +12,9 @@ class TipoDoi extends BaseModel
         'nombre',
         'num_digitos'
     ];
+
+    public function listar(): array
+    {
+        return $this->orderBy('nombre', 'ASC')->findAll();
+    }
 }
