@@ -8,6 +8,6 @@ $routes->group('productos', static function ($routes) {
 
     // Logic
     $routes->post('save_db', 'ProductoController::saveDB');
-    $routes->get('eliminar_db/(:num)', 'ProductoController::softDeleteDB/$1');
+    $routes->get('eliminar_db/(:num)', 'ProductoController::deleteDB/$1');
     $routes->post('update_db/(:num)', 'ProductoController::updateDB/$1');
 });

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Mantenimiento;
+
 use App\Models\BaseModel;
 
 class CatProducto extends BaseModel
@@ -11,4 +12,9 @@ class CatProducto extends BaseModel
         'nombre',
         'descripcion'
     ];
+
+    public function listar(): array
+    {
+        return $this->orderBy('nombre', 'ASC')->findAll();
+    }
 }
