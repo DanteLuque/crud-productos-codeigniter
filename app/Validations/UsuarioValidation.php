@@ -9,7 +9,7 @@ class UsuarioValidation
         'apellidos'  => 'required|min_length[2]',
         'tipo_doi_id' => 'required|is_natural_no_zero',
         'num_doi'    => 'required',
-        'username'   => 'required|min_length[4]|max_length[70]|is_unique[usuarios.username,id,{id}]',
+        'username'   => 'required|min_length[4]|max_length[70]|is_unique_soft[usuarios.username]',
         'userpass'   => 'required|min_length[6]',
     ];
 
