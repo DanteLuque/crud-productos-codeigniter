@@ -1,7 +1,7 @@
 <?php
 
 $routes->group('auth', static function ($routes) {
-    $routes->get('login', 'AuthController::registrarCliente');
+    $routes->get('login', 'AuthController::login');
     
     $routes->group('cliente', static function ($routes) {
         $routes->get('register', 'AuthController::registrarCliente');
