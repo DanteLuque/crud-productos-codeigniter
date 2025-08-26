@@ -7,6 +7,7 @@
   lucide.createIcons();
 </script>
 
-<script type="module" src="<?= base_url('js/index.js') ?>"></script>
+<!-- custom scripts-->
+<script type="module" src="<?= base_url('js/ubigeo.js') ?>"></script>
 </body>
 </html>

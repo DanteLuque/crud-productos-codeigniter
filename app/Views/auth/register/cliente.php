@@ -57,19 +57,53 @@
             </div>
         </div>
 
+        <!-- DIRECCIÓN -->
         <div class="card mb-3">
-            <div class="card-header">Direcciones</div>
+            <div class="card-header">Dirección</div>
             <div class="card-body">
-                <div id="direcciones-container"></div>
-                <button type="button" class="btn btn-outline-primary" onclick="agregarDireccion()">Agregar dirección</button>
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <label>Departamento</label>
+                        <select class="form-select" name="departamento" id="departamento" onchange="loadProvincias()">
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Provincia</label>
+                        <select class="form-select" name="provincia" id="provincia" onchange="loadDistritos()">
+                            <option value="">Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Distrito</label>
+                        <select class="form-select" name="distrito" id="distrito">
+                            <option value="">Seleccione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label>Referencia</label>
+                    <input type="text" name="referencia" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label>Latitud</label>
+                        <input type="text" name="lat" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label>Longitud</label>
+                        <input type="text" name="lng" class="form-control">
+                    </div>
+                </div>
             </div>
         </div>
 
         <button type="submit" class="btn btn-success">Registrarse</button>
     </form>
 </div>
-
-<!-- Scripts -->
-
 
 <?= $this->include('Layouts/partials/footer') ?>
