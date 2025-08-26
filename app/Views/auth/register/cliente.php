@@ -2,7 +2,11 @@
 
 <div class="container mt-4">
     <h3>Registro de Cliente</h3>
-    <form method="POST" action="<?= base_url('auth/saveCliente') ?>">
+
+    <!-- Mensajes flash -->
+    <?= $this->include('common/msg-error') ?>
+
+    <form method="POST" action="<?= base_url('auth/cliente/save_db') ?>">
         <!-- DATOS DE USUARIO -->
         <div class="card mb-3">
             <div class="card-header">Datos de Usuario</div>
