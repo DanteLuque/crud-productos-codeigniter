@@ -5,7 +5,7 @@ namespace App\Validations;
 class DireccionValidation
 {
     public array $direccion = [
-        'ubigeo'    => 'required|exact_length[6]',
+        'distrito'    => 'required|exact_length[6]',
         'direccion' => 'required|min_length[5]',
         'referencia' => 'permit_empty|min_length[3]',
         'lat'       => 'permit_empty|decimal',
