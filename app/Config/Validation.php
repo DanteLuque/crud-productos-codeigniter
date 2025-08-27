@@ -9,7 +9,7 @@ use CodeIgniter\Validation\StrictRules\FormatRules;
 use CodeIgniter\Validation\StrictRules\Rules;
 
 //custom validators
-use App\Validations\CustomRules;
+use App\Rules\CustomRules;
 
 class Validation extends BaseConfig
 {

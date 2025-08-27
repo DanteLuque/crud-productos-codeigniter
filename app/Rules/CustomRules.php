@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validations;
+namespace App\Rules;
 
 use Config\Database;
 

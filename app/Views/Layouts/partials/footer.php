@@ -9,5 +9,6 @@
 
 <!-- custom scripts-->
 <script type="module" src="<?= base_url('js/ubigeo.js') ?>"></script>
+<script type="module" src="<?= base_url('js/show-pass-input.js') ?>"></script>
 </body>
 </html>

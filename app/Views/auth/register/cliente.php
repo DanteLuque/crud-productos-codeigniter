@@ -38,14 +38,20 @@
                         <input type="text" name="username" class="form-control" minlength="4" maxlength="70" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Contraseña</label>
-                        <input
-                            type="password"
-                            name="userpass"
-                            class="form-control"
-                            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$"
-                            title="La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial"
-                            required>
+                        <label for="userpass">Contraseña</label>
+                        <div class="input-group">
+                            <input
+                                type="password"
+                                id="userpass"
+                                name="userpass"
+                                class="form-control"
+                                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$"
+                                title="La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial"
+                                required>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
