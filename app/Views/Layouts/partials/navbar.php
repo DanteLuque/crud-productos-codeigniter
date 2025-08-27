@@ -37,10 +37,10 @@
         <div class="modal-content p-4">
           <h5 class="mb-3">¿Desea registrarse como?</h5>
           <div class="d-flex gap-3">
-            <a href="<?= base_url('auth/cliente/register') ?>" class="btn btn-outline-primary d-flex align-items-center gap-2">
+            <a href="<?= base_url('auth/register_cliente') ?>" class="btn btn-outline-primary d-flex align-items-center gap-2">
               <i data-lucide="user"></i> Cliente
             </a>
-            <a href="<?= base_url('auth/vendedor/register') ?>" class="btn btn-outline-success d-flex align-items-center gap-2">
+            <a href="<?= base_url('auth/register_vendedor') ?>" class="btn btn-outline-success d-flex align-items-center gap-2">
               <i data-lucide="store"></i> Vendedor
             </a>
           </div>
