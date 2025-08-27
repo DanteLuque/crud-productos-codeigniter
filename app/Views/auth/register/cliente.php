@@ -75,39 +75,38 @@
                 <div class="row mb-2">
                     <div class="col-md-4">
                         <label>Departamento</label>
-                        <select class="form-select" name="departamento" id="departamento" onchange="loadProvincias()">
-
+                        <select class="form-select" name="departamento" id="departamento" required onchange="loadProvincias()">
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label>Provincia</label>
-                        <select class="form-select" name="provincia" id="provincia" onchange="loadDistritos()">
+                        <select class="form-select" name="provincia" id="provincia" required onchange="loadDistritos()">
                             <option value="">Seleccione</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label>Distrito</label>
-                        <select class="form-select" name="distrito" id="distrito">
+                        <select class="form-select" name="distrito" id="distrito" required>
                             <option value="">Seleccione</option>
                         </select>
                     </div>
                 </div>
                 <div class="mb-2">
                     <label>Dirección</label>
-                    <input type="text" name="direccion" class="form-control">
+                    <input type="text" name="direccion" class="form-control" minlength="5" required>
                 </div>
                 <div class="mb-2">
                     <label>Referencia</label>
-                    <input type="text" name="referencia" class="form-control">
+                    <input type="text" name="referencia" class="form-control" minlength="3">
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <label>Latitud</label>
-                        <input type="text" name="lat" class="form-control">
+                        <input type="number" step="any" name="lat" class="form-control">
                     </div>
                     <div class="col-md-6 mb-2">
                         <label>Longitud</label>
-                        <input type="text" name="lng" class="form-control">
+                        <input type="number" step="any" name="lng" class="form-control">
                     </div>
                 </div>
             </div>
