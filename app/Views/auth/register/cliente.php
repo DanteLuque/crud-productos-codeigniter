@@ -58,11 +58,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" maxlength="70" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Teléfono</label>
-                        <input type="text" name="telefono" class="form-control">
+                        <input type="tel" name="telefono" minlength="6" maxlength="12" class="form-control">
                     </div>
                 </div>
             </div>

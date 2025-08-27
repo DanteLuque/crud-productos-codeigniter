@@ -31,6 +31,7 @@ class AuthController extends BaseController
         helper('validation');
         $errors = [];
         $errors = array_merge($errors, runValidation('usuario', $this->request));
+        $errors = array_merge($errors, runValidation('cliente', $this->request));
         if (!empty($errors)) return redirect()->back()->withInput()->with('errors', $errors);
         
         $db = \Config\Database::connect();

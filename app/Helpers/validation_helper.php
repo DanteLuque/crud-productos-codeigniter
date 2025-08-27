@@ -11,11 +11,16 @@ if (!function_exists('runValidation')) {
     function runValidation(string $entity, $request): array
     {
         $validation = \Config\Services::validation();
-        
+
         switch ($entity) {
             case 'usuario':
                 $rules  = (new \App\Validations\UsuarioValidation())->usuario;
                 $errors = (new \App\Validations\UsuarioValidation())->usuario_errors;
+                break;
+
+            case 'cliente':
+                $rules  = (new \App\Validations\ClienteValidation())->cliente;
+                $errors = (new \App\Validations\ClienteValidation())->cliente_errors;
                 break;
 
             default:
