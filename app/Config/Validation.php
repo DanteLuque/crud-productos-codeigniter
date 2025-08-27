@@ -9,7 +9,6 @@ use CodeIgniter\Validation\StrictRules\FormatRules;
 use CodeIgniter\Validation\StrictRules\Rules;
 
 //custom validators
-use App\Validations\UsuarioValidation;
 use App\Validations\CustomRules;
 
 class Validation extends BaseConfig
@@ -32,7 +31,6 @@ class Validation extends BaseConfig
 
         //custom validators
         CustomRules::class,
-        UsuarioValidation::class,
     ];
 
     /**
