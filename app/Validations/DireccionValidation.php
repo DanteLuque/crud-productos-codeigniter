@@ -13,7 +13,7 @@ class DireccionValidation
     ];
 
     public array $direccion_errors = [
-        'ubigeo' => [
+        'distrito' => [
             'required' => 'Debe seleccionar un distrito',
             'exact_length' => 'El código de ubigeo debe tener exactamente 6 dígitos',
         ],
