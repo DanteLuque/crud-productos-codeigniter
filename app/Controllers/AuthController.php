@@ -7,8 +7,6 @@ use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\Direccion;
 
-use App\Validations\UsuarioValidation;
-
 class AuthController extends BaseController
 {
     public function login(): string
@@ -30,18 +28,11 @@ class AuthController extends BaseController
 
     public function saveClienteDB()
     {
-        $validation = \Config\Services::validation();
-        $validation->setRules(
-            (new UsuarioValidation())->usuario,
-            (new UsuarioValidation())->usuario_errors
-        );
-
-        if (!$validation->withRequest($this->request)->run()) {
-            return redirect()->back()->withInput()
-                ->with('error', 'Por favor corrige los errores')
-                ->with('errors', $validation->getErrors());
-        }
-
+        helper('validation');
+        $errors = [];
+        $errors = array_merge($errors, runValidation('usuario', $this->request));
+        if (!empty($errors)) return redirect()->back()->withInput()->with('errors', $errors);
+        
         $db = \Config\Database::connect();
         $db->transBegin();
 

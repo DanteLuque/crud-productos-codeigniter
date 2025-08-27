@@ -14,15 +14,16 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Nombres</label>
-                        <input type="text" name="nombres" class="form-control" required>
+                        <input type="text" name="nombres" class="form-control" minlength="2" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Apellidos</label>
-                        <input type="text" name="apellidos" class="form-control" required>
+                        <input type="text" name="apellidos" class="form-control" minlength="2" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Tipo de Documento</label>
                         <select name="tipo_doi_id" class="form-select" required>
+                            <option value="">Seleccione</option>
                             <?php foreach ($tiposDoi as $tipo): ?>
                                 <option value="<?= $tipo['id'] ?>"><?= $tipo['nombre'] ?></option>
                             <?php endforeach; ?>
@@ -30,15 +31,21 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Número de Documento</label>
-                        <input type="text" name="num_doi" class="form-control" required>
+                        <input type="number" name="num_doi" class="form-control" min="1" step="1" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Username</label>
-                        <input type="text" name="username" class="form-control" required>
+                        <input type="text" name="username" class="form-control" minlength="4" maxlength="70" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Contraseña</label>
-                        <input type="password" name="userpass" class="form-control" required>
+                        <input
+                            type="password"
+                            name="userpass"
+                            class="form-control"
+                            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$"
+                            title="La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial"
+                            required>
                     </div>
                 </div>
             </div>
@@ -69,7 +76,7 @@
                     <div class="col-md-4">
                         <label>Departamento</label>
                         <select class="form-select" name="departamento" id="departamento" onchange="loadProvincias()">
-                            
+
                         </select>
                     </div>
                     <div class="col-md-4">
