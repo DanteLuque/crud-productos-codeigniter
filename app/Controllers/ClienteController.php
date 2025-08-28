@@ -25,11 +25,10 @@ class ClienteController extends BaseController
             $usuarioId = $usuarioModel->crear([
                 'nombres'   => $this->request->getPost('nombres'),
                 'apellidos' => $this->request->getPost('apellidos'),
-                'tipo_doi_id' => $this->request->getPost('tipo_doi_id'),
-                'num_doi'   => $this->request->getPost('num_doi'),
                 'username'  => $this->request->getPost('username'),
                 'userpass'  => $this->request->getPost('userpass'),
                 'premium'   => 0,
+                'rol'       => 'CLIENTE'
             ]);
             if (!$usuarioId) throw new \Exception("Error al crear usuario");
 
@@ -38,6 +37,9 @@ class ClienteController extends BaseController
                 'usuario_id' => $usuarioId,
                 'email'      => $this->request->getPost('email'),
                 'telefono'   => $this->request->getPost('telefono'),
+                'tipo_doi_id'=> $this->request->getPost('tipo_doi_id'),
+                'num_doi'    => $this->request->getPost('num_doi'),
+                'saldo'      => 100 // Saldo de prueba para nuevo cliente
             ]);
             if (!$clienteId) throw new \Exception("Error al crear cliente");
 

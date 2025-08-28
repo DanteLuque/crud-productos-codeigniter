@@ -12,7 +12,8 @@ class Producto extends BaseModel
         'descripcion',
         'precio',
         'descuento',
-        'categoria_id'
+        'categoria_id',
+        'vendedor_id'
     ];
 
     public function listar(): array

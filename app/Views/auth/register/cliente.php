@@ -20,19 +20,6 @@
                         <input type="text" name="apellidos" class="form-control" minlength="2" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Tipo de Documento</label>
-                        <select name="tipo_doi_id" class="form-select" required>
-                            <option value="">Seleccione</option>
-                            <?php foreach ($tiposDoi as $tipo): ?>
-                                <option value="<?= $tipo['id'] ?>"><?= $tipo['nombre'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Número de Documento</label>
-                        <input type="number" name="num_doi" class="form-control" min="1" step="1" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control" minlength="4" maxlength="70" required>
                     </div>
@@ -68,6 +55,19 @@
                     <div class="col-md-6 mb-3">
                         <label>Teléfono</label>
                         <input type="tel" name="telefono" minlength="6" maxlength="12" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Tipo de Documento</label>
+                        <select name="tipo_doi_id" class="form-select" required>
+                            <option value="">Seleccione</option>
+                            <?php foreach ($tiposDoi as $tipo): ?>
+                                <option value="<?= $tipo['id'] ?>"><?= $tipo['nombre'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Número de Documento</label>
+                        <input type="number" name="num_doi" class="form-control" min="1" step="1" required>
                     </div>
                 </div>
             </div>

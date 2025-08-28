@@ -147,11 +147,9 @@ CREATE TABLE detalle_venta (
     id              BIGINT AUTO_INCREMENT PRIMARY KEY,
     venta_id        BIGINT NOT NULL,
     producto_id     BIGINT NOT NULL,
-    vendedor_id     BIGINT NOT NULL,
     cantidad        INT NOT NULL,
     precio_unitario DECIMAL(7,2) NOT NULL,
     subtotal        DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (venta_id) REFERENCES ventas(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id),
-    FOREIGN KEY (vendedor_id) REFERENCES vendedores(id)
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
 ) ENGINE=INNODB;

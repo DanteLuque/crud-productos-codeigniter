@@ -12,6 +12,7 @@ class Vendedor extends BaseModel
         'UUID',
         'usuario_id',
         'email',
+        'ruc',
         'telefono',
         'nombre_tienda',
         'descripcion',
@@ -38,12 +39,11 @@ class Vendedor extends BaseModel
         return $this->select('v.*, 
                           u.nombres, 
                           u.apellidos, 
-                          u.username, 
-                          u.num_doi AS numero_doi, 
-                          t.nombre AS tipo_doi')
+                          u.username,
+                          u.premium,
+                          u.rol')
             ->from('vendedores v')
             ->join('usuarios u', 'u.id = v.usuario_id')
-            ->join('tipo_doi t', 'u.tipo_doi_id = t.id')
             ->findAll();
     }
 }

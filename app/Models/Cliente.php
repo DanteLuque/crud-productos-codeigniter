@@ -13,6 +13,9 @@ class Cliente extends BaseModel
         'usuario_id',
         'email',
         'telefono',
+        'tipo_doi_id',
+        'num_doi',
+        'saldo',
     ];
 
     public function crear(array $data): int
@@ -36,12 +39,13 @@ class Cliente extends BaseModel
         return $this->select('c.*, 
                           u.nombres, 
                           u.apellidos, 
-                          u.username, 
-                          u.num_doi AS numero_doi, 
+                          u.username,
+                          u.premium,
+                          u.rol,
                           t.nombre AS tipo_doi')
             ->from('clientes c')
             ->join('usuarios u', 'u.id = c.usuario_id')
-            ->join('tipo_doi t', 'u.tipo_doi_id = t.id')
+            ->join('tipo_doi t', 'c.tipo_doi_id = t.id')
             ->findAll();
     }
 }

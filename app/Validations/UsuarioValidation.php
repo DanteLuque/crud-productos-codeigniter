@@ -7,8 +7,6 @@ class UsuarioValidation
     public array $usuario = [
         'nombres'    => 'required|min_length[2]',
         'apellidos'  => 'required|min_length[2]',
-        'tipo_doi_id' => 'required|is_natural_no_zero',
-        'num_doi'    => 'required|is_unique_soft[usuarios.num_doi]',
         'username'   => 'required|is_unique_soft[usuarios.username]|min_length[4]|max_length[70]',
         'userpass'   => 'required|regex_match[/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/]',
     ];
@@ -21,13 +19,6 @@ class UsuarioValidation
         'apellidos' => [
             'required' => 'El apellido es obligatorio',
             'min_length' => 'El apellido debe tener mínimo 2 caracteres',
-        ],
-        'tipo_doi_id' => [
-            'required' => 'Debe seleccionar un tipo de documento',
-        ],
-        'num_doi' => [
-            'required' => 'Debe ingresar el número de documento',
-            'is_unique_soft' => 'Esta identificación ya está registrada',
         ],
         'username' => [
             'required' => 'El usuario es obligatorio',

@@ -5,8 +5,10 @@ namespace App\Validations;
 class ClienteValidation
 {
     public array $cliente = [
-        'email' => 'required|valid_email|is_unique_soft[clientes.email]|max_length[70]',
-        'telefono' => 'permit_empty|numeric|min_length[6]|max_length[12]',
+        'email'         => 'required|valid_email|is_unique_soft[clientes.email]|max_length[70]',
+        'telefono'      => 'permit_empty|numeric|min_length[6]|max_length[12]',
+        'tipo_doi_id'   => 'required|is_natural_no_zero',
+        'num_doi'       => 'required|is_unique_soft[clientes.num_doi]',
     ];
 
     public array $cliente_errors = [
@@ -20,6 +22,13 @@ class ClienteValidation
             'numeric'    => 'El teléfono debe contener solo números',
             'min_length' => 'El teléfono debe tener al menos 6 dígitos',
             'max_length' => 'El teléfono no puede superar los 12 dígitos',
+        ],
+                'tipo_doi_id' => [
+            'required' => 'Debe seleccionar un tipo de documento',
+        ],
+        'num_doi' => [
+            'required' => 'Debe ingresar el número de documento',
+            'is_unique_soft' => 'Esta identificación ya está registrada',
         ],
     ];
 }

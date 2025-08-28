@@ -12,11 +12,10 @@ class Usuario extends BaseModel
         'UUID',
         'nombres',
         'apellidos',
-        'tipo_doi_id',
-        'num_doi',
         'username',
         'userpass',
         'premium',
+        'rol',
     ];
 
     public function crear(array $data): int
