@@ -18,6 +18,11 @@ class Usuario extends BaseModel
         'rol',
     ];
 
+    public function obtenerPorUsername($username)
+    {
+        return $this->where('username', $username)->first();
+    }
+
     public function crear(array $data): int
     {
         $data['UUID']     = Uuid::uuid4()->toString();

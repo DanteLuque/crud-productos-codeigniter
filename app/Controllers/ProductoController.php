@@ -24,7 +24,7 @@ class ProductoController extends BaseController
   public function editar($id = null)
   {
     $producto = new Producto();
-    $datosProducto = $producto->where('id', $id)->first();
+    $datosProducto = $producto->obtenerPorId($id);
     if (!$datosProducto) return redirect()->to(base_url('/'));
 
     $data['producto'] = $datosProducto;

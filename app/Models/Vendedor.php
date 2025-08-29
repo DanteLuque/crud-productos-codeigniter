@@ -24,6 +24,11 @@ class Vendedor extends BaseModel
         return $this->insert($data, true);
     }
 
+    public function obtenerPorUsuarioId($usuarioId)
+    {
+        return $this->where('usuario_id', $usuarioId)->first();
+    }
+
     public function actualizar(int $id, array $data): bool
     {
         return $this->update($id, $data);

@@ -2,6 +2,9 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-5">
+
+  <?= $this->include('common/msg-success') ?>
+  
   <h2 class="mb-4"> Productos disponibles </h2>
   <div class="row g-4">
     <?php foreach ($productos as $producto): ?>

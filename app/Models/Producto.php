@@ -21,6 +21,11 @@ class Producto extends BaseModel
         return $this->orderBy('id', 'ASC')->findAll();
     }
 
+    public function obtenerPorId($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+
     public function crear(array $data, $imagenFile = null): int
     {
         if ($imagenFile && $imagenFile->isValid() && !$imagenFile->hasMoved()) {
