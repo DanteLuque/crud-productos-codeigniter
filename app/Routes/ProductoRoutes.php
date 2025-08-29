@@ -2,7 +2,10 @@
 
 $routes->group('productos', static function ($routes) {
     // Render views
-    $routes->get('crear', 'ProductoController::crear', ['filter' => 'auth']);
+    $routes->get('crear','ProductoController::crear', [ 
+                    'filter' => ['auth', 'role:VENDEDOR'] 
+            ]);
+
     $routes->get('editar/(:num)', 'ProductoController::editar/$1');
 
     // Logic

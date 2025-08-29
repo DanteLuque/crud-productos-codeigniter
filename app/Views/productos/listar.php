@@ -4,7 +4,8 @@
 <div class="container mt-5">
 
   <?= $this->include('common/msg-success') ?>
-  
+  <?= $this->include('common/msg-error') ?>
+
   <h2 class="mb-4"> Productos disponibles </h2>
   <div class="row g-4">
     <?php foreach ($productos as $producto): ?>

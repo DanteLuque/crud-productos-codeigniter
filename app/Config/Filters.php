@@ -37,6 +37,7 @@ class Filters extends BaseFilters
 
         //custom filters
         'auth'          => \App\Filters\Auth::class,
+        'role'          => \App\Filters\Role::class,
     ];
 
     /**

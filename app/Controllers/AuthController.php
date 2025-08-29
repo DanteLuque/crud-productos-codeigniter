@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\Vendedor;
 use App\Models\Mantenimiento\TipoDoi;
+use CodeIgniter\Model;
 
 class AuthController extends BaseController
 {
@@ -40,22 +41,36 @@ class AuthController extends BaseController
         }
 
         $clienteModel = new Cliente();
-        $datosCliente = $clienteModel->obtenerPorUsuarioId($usuario['id']);
+        $vendedorModel = new Model();
 
-        $vendedorModel = new Vendedor();
-        $datosVendedor = $vendedorModel->obtenerPorUsuarioId($usuario['id']);
+        $clienteId = null;
+        $vendedorId = null;
 
-        // Guardar sesión
+        if ($usuario['rol'] === 'CLIENTE') {
+            $clienteId = $clienteModel->obtenerPorUsuarioId($usuario['id'])['id'] ?? null;
+        } elseif ($usuario['rol'] === 'VENDEDOR') {
+            $vendedorId = $vendedorModel->obtenerPorUsuarioId($usuario['id'])['id'] ?? null;
+        }
         $session = session();
         $session->set([
-            'user_id'  => $usuario['id'],
-            'username' => $usuario['username'],
-            'rol' => $usuario['rol'],
-            'cliente_id'  => $datosCliente['id'] ?? null,
-            'vendedor_id' => $datosVendedor['id'] ?? null,
+            'user' => [
+                'id'         => $usuario['id'],
+                'username'   => $usuario['username'],
+                'nombres'    => $usuario['nombres'],
+                'rol'        => $usuario['rol'],
+                'cliente_id' => $clienteId,
+                'vendedor_id' => $vendedorId,
+            ],
             'isLoggedIn' => true,
         ]);
 
+
         return redirect()->to('/')->with('success', 'Bienvenido ' . $usuario['nombres']);
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/auth/login')->with('success', 'Sesión cerrada correctamente');
     }
 }
