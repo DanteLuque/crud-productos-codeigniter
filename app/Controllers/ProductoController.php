@@ -10,7 +10,14 @@ class ProductoController extends BaseController
   public function index(): string
   {
     $producto = new Producto();
-    $data['productos'] = $producto->listar();
+    $user = session('user');
+
+    if ($user && isset($user['vendedor_id'])) {
+      $data['productos'] = $producto->obtenerPorVendedorId($user['vendedor_id']);
+    } else {
+      $data['productos'] = $producto->listar();
+    }
+
     return view('productos/listar', $data);
   }
 
@@ -34,14 +41,36 @@ class ProductoController extends BaseController
     return view('productos/editar', $data);
   }
 
-  public function saveDB()
+  public function detail($id = null)
   {
     $producto = new Producto();
-    $producto->crear(
-      $this->request->getPost(),
-      $this->request->getFile('imagen')
-    );
-    return redirect()->to(base_url('/'));
+    $datosProducto = $producto->obtenerPorId($id);
+    if (!$datosProducto) return redirect()->to(base_url('/'));
+
+    $data['producto'] = $datosProducto;
+    $catModel = new CatProducto();
+    $data['categoria'] = $catModel->obtenerPorId($datosProducto['categoria_id']);
+
+    return view('productos/detail', $data);
+  }
+
+  public function saveDB()
+  {
+    helper('validation');
+    $errors = runValidation('producto', $this->request);
+    if (!empty($errors)) return redirect()->back()->withInput()->with('errors', $errors);
+
+    try {
+      $producto = new Producto();
+      $data = $this->request->getPost();
+      $data['vendedor_id'] = session('user')['vendedor_id'];
+
+      $producto->crear($data, $this->request->getFile('imagen'));
+
+      return redirect()->to(base_url('/'))->with('success', 'Producto creado correctamente');
+    } catch (\Throwable $e) {
+      return redirect()->back()->withInput()->with('error', 'Hubo un error: ' . $e->getMessage());
+    }
   }
 
   public function updateDB($id = null)

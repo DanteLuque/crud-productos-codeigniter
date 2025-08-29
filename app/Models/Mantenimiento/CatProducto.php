@@ -17,4 +17,9 @@ class CatProducto extends BaseModel
     {
         return $this->orderBy('nombre', 'ASC')->findAll();
     }
+
+    public function obtenerPorId($id)
+    {
+        return $this->where('id', $id)->first();
+    }
 }

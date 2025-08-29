@@ -29,11 +29,6 @@
             <!-- precios -->
             <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
 
-              <!-- precio original -->
-              <span class="h5 mb-0<?= $producto['descuento'] ? ' text-decoration-line-through' : '' ?>">
-                $<?= $producto['precio'] ?>
-              </span>
-
               <!-- precio con descuento -->
               <?php if ($producto['descuento']) { ?>
                 <span class="h3 mb-0 text-success">
@@ -41,10 +36,15 @@
                 </span>
               <?php } ?>
 
+              <!-- precio original -->
+              <span class="h5 mb-0<?= $producto['descuento'] ? ' text-decoration-line-through' : '' ?>">
+                $<?= $producto['precio'] ?>
+              </span>
+
               <!-- descuento -->
               <div>
                 <?php if ($producto['descuento']) { ?>
-                  <i class="bi bi-star-fill text-success"><?= $producto['descuento'] ?>%</i>
+                  <i class="badge bg-danger ms-2"><?= $producto['descuento'] ?>% OFF</i>
                 <?php } ?>
               </div>
             </div>
@@ -52,9 +52,15 @@
 
           <!-- acciones -->
           <div class="card-footer d-flex justify-content-between bg-light">
-            <a href="<?= base_url('productos/eliminar_db/') ?><?= $producto['id'] ?>" class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i> Eliminar</a>
+            <?php if (session()->get('user.rol') === 'VENDEDOR'): ?>
+              <a href="<?= base_url('productos/editar/') ?><?= $producto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
+            <?php endif; ?>
 
-            <a href="<?= base_url('productos/editar/') ?><?= $producto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
+            <a href="<?= base_url('productos/detail/') ?><?= $producto['id'] ?>" class="btn btn-success btn-sm">Ver más</a>
+            
+            <?php if (session()->get('user.rol') === 'VENDEDOR'): ?>
+              <a href="<?= base_url('productos/eliminar_db/') ?><?= $producto['id'] ?>" class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i> Eliminar</a>
+            <?php endif; ?>
           </div>
 
         </div>

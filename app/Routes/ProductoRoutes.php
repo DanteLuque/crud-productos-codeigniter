@@ -2,11 +2,12 @@
 
 $routes->group('productos', static function ($routes) {
     // Render views
-    $routes->get('crear','ProductoController::crear', [ 
+    $routes->get('crear','ProductoController::crear', [
                     'filter' => ['auth', 'role:VENDEDOR'] 
-            ]);
+    ]);
 
     $routes->get('editar/(:num)', 'ProductoController::editar/$1');
+    $routes->get('detail/(:num)', 'ProductoController::detail/$1');
 
     // Logic
     $routes->post('save_db', 'ProductoController::saveDB');

@@ -1,4 +1,5 @@
-<?= $this->include('Layouts/partials/header') ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
 <div class="container mt-4">
     <h3>Iniciar Sesión</h3>
@@ -31,4 +32,4 @@
     </form>
 </div>
 
-<?= $this->include('Layouts/partials/footer') ?>
+<?= $this->endSection() ?>

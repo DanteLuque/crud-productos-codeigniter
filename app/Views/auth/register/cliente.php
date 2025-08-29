@@ -1,10 +1,11 @@
-<?= $this->include('Layouts/partials/header') ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
-<div class="container mt-4">
+<div class="container my-4">
     <h3>Registro de Cliente</h3>
-
+    
     <?= $this->include('common/msg-error') ?>
-
+    
     <form method="POST" action="<?= base_url('clientes/save_db') ?>">
         <!-- DATOS DE USUARIO -->
         <div class="card mb-3">
@@ -27,13 +28,13 @@
                         <label for="userpass">Contraseña</label>
                         <div class="input-group">
                             <input
-                                type="password"
-                                id="userpass"
-                                name="userpass"
-                                class="form-control"
-                                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$"
-                                title="La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial"
-                                required>
+                            type="password"
+                            id="userpass"
+                            name="userpass"
+                            class="form-control"
+                            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$"
+                            title="La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial"
+                            required>
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                 <i data-lucide="eye"></i>
                             </button>
@@ -42,7 +43,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- DATOS DE CLIENTE -->
         <div class="card mb-3">
             <div class="card-header">Datos de Cliente</div>
@@ -62,17 +63,17 @@
                             <option value="">Seleccione</option>
                             <?php foreach ($tiposDoi as $tipo): ?>
                                 <option value="<?= $tipo['id'] ?>"><?= $tipo['nombre'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
                         <label>Número de Documento</label>
                         <input type="number" name="num_doi" class="form-control" min="1" step="1" required>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <!-- DIRECCIÓN -->
         <div class="card mb-3">
             <div class="card-header">Dirección</div>
@@ -81,17 +82,17 @@
                     <div class="col-md-4">
                         <label>Departamento</label>
                         <select class="form-select" name="departamento" id="departamento" required onchange="loadProvincias()">
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Provincia</label>
-                        <select class="form-select" name="provincia" id="provincia" required onchange="loadDistritos()">
-                            <option value="">Seleccione</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Distrito</label>
-                        <select class="form-select" name="distrito" id="distrito" required>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Provincia</label>
+                            <select class="form-select" name="provincia" id="provincia" required onchange="loadDistritos()">
+                                <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Distrito</label>
+                            <select class="form-select" name="distrito" id="distrito" required>
                             <option value="">Seleccione</option>
                         </select>
                     </div>
@@ -116,9 +117,9 @@
                 </div>
             </div>
         </div>
-
+        
         <button type="submit" class="btn btn-success">Registrarse</button>
     </form>
 </div>
 
-<?= $this->include('Layouts/partials/footer') ?>
+<?= $this->endSection() ?>

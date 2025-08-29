@@ -1,6 +1,7 @@
-<?= $this->include('Layouts/partials/header') ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
-<div class="container mt-4">
+<div class="container my-4">
     <h3>Registro de Vendedor</h3>
 
     <?= $this->include('common/msg-error') ?>
@@ -124,4 +125,4 @@
     </form>
 </div>
 
-<?= $this->include('Layouts/partials/footer') ?>
+<?= $this->endSection() ?>

@@ -14,7 +14,7 @@
 
           <div>
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" autofocus required>
+            <input type="text" class="form-control" name="nombre" id="nombre" autofocus minlength="3" maxlength="150" required>
           </div>
 
           <div>
@@ -25,7 +25,7 @@
 
           <div>
             <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="50" maxlength="500" required></textarea>
           </div>
 
           <div>
@@ -35,7 +35,7 @@
 
           <div>
             <label for="nombre">Descuento</label>
-            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" class="form-control">
+            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" maxlength="10" class="form-control">
           </div>
 
           <div>

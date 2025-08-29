@@ -26,6 +26,10 @@ class Producto extends BaseModel
         return $this->where('id', $id)->first();
     }
 
+    public function obtenerPorVendedorId($vendedorId){
+        return $this->where('vendedor_id',$vendedorId)->findAll();
+    }
+
     public function crear(array $data, $imagenFile = null): int
     {
         if ($imagenFile && $imagenFile->isValid() && !$imagenFile->hasMoved()) {
