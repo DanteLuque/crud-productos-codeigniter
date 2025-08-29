@@ -1,9 +1,10 @@
-<?= $header; ?>
+<?= $this->extend('layouts/master') ?>
+<?= $this->section('content') ?>
 
 <div class="container mt-2">
   <div class="my-2">
     <h4>Registro de productos</h4>
-    <a href="<?= base_url('') ?>">Volver</a>
+    <a href="<?= base_url() ?>">Volver</a>
   </div>
 
   <form method="POST" action="<?= base_url('productos/save_db') ?>" enctype="multipart/form-data">
@@ -13,7 +14,7 @@
 
           <div>
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" autofocus required>
+            <input type="text" class="form-control" name="nombre" id="nombre" autofocus minlength="3" maxlength="150" required>
           </div>
 
           <div>
@@ -24,7 +25,7 @@
 
           <div>
             <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="50" maxlength="500" required></textarea>
           </div>
 
           <div>
@@ -33,8 +34,18 @@
           </div>
 
           <div>
-            <label for="nombre">Precio</label>
-            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" class="form-control" >
+            <label for="nombre">Descuento</label>
+            <input type="number" id="descuento" name="descuento" min="0" max="100" placeholder="0" maxlength="10" class="form-control">
+          </div>
+
+          <div>
+            <label for="categoria_id">Categoría</label>
+            <select name="categoria_id" id="categoria_id" class="form-control" required>
+              <option value="">-- Seleccione --</option>
+              <?php foreach ($categorias as $categoria): ?>
+                <option value="<?= $categoria['id'] ?>"><?= esc($categoria['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
 
         </div>
@@ -47,4 +58,4 @@
   </form>
 </div>
 
-<?= $footer; ?>
+<?= $this->endSection() ?>

@@ -128,3 +128,7 @@ _modules/*
 # folder public/uploads
 public/uploads/*
 !public/uploads/.gitkeep
+
+# folder public/trash
+public/trash/*
+!public/trash/.gitkeep
