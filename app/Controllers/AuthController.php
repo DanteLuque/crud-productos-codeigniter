@@ -6,7 +6,6 @@ use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\Vendedor;
 use App\Models\Mantenimiento\TipoDoi;
-use CodeIgniter\Model;
 
 class AuthController extends BaseController
 {
@@ -41,7 +40,7 @@ class AuthController extends BaseController
         }
 
         $clienteModel = new Cliente();
-        $vendedorModel = new Model();
+        $vendedorModel = new Vendedor();
 
         $clienteId = null;
         $vendedorId = null;
