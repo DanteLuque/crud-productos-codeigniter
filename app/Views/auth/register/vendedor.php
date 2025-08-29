@@ -1,7 +1,7 @@
 <?= $this->include('Layouts/partials/header') ?>
 
 <div class="container mt-4">
-    <h3>Registro de Cliente</h3>
+    <h3>Registro de Vendedor</h3>
 
     <?= $this->include('common/msg-error') ?>
 
