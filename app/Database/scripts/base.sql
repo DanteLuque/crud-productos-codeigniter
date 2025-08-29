@@ -1,6 +1,24 @@
 CREATE DATABASE TIENDITA;
 USE TIENDITA;
 
+-- sessions/*
+/*
+	Si tu app corre en varios servidores (balanceador de carga), 
+	las sesiones en archivos locales no funcionan bien porque cada servidor guarda las suyas. 
+	Con base de datos, todos los servidores comparten la misma tabla.
+	la sesión siguirá viva aunque el usuario cambie de servidor.
+*/
+
+CREATE TABLE ci_sessions (
+    id VARCHAR(128) NOT NULL,
+    ip_address VARCHAR(45) NOT NULL,
+    timestamp INT(10) UNSIGNED NOT NULL DEFAULT 0,
+    data BLOB NOT NULL,
+    PRIMARY KEY (id),
+    KEY ci_sessions_timestamp (timestamp)
+);
+-- */sessions
+
 -- ubigeo/*
 CREATE TABLE departamentos (
   id      CHAR(2) PRIMARY KEY,
