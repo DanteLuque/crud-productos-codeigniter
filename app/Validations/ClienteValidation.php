@@ -23,7 +23,7 @@ class ClienteValidation
             'min_length' => 'El teléfono debe tener al menos 6 dígitos',
             'max_length' => 'El teléfono no puede superar los 12 dígitos',
         ],
-                'tipo_doi_id' => [
+        'tipo_doi_id' => [
             'required' => 'Debe seleccionar un tipo de documento',
         ],
         'num_doi' => [

@@ -12,3 +12,4 @@ require APPPATH . 'Routes/UbigeoRoutes.php';
 require APPPATH . 'Routes/HomeRoutes.php';
 require APPPATH . 'Routes/ProductoRoutes.php';
 require APPPATH . 'Routes/ClienteRoutes.php';
+require APPPATH . 'Routes/VendedorRoutes.php';

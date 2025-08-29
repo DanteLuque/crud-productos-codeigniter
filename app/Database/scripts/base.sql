@@ -77,7 +77,7 @@ CREATE TABLE vendedores(
 	UUID 					CHAR(36) NULL,
 	usuario_id  		BIGINT NOT NULL,
 	email 				VARCHAR(70) NOT NULL,
-	ruc					CHAR(12) NOT NULL,
+	ruc					CHAR(11) NOT NULL,
 	telefono    		VARCHAR(12) NULL,
 	nombre_tienda 		VARCHAR(255) NOT NULL,
 	descripcion 		TEXT NOT NULL,

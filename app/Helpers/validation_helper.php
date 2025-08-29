@@ -28,6 +28,11 @@ if (!function_exists('runValidation')) {
                 $errors = (new \App\Validations\DireccionValidation())->direccion_errors;
                 break;
 
+            case 'vendedor':
+                $rules  = (new \App\Validations\DireccionValidation())->direccion;
+                $errors = (new \App\Validations\DireccionValidation())->direccion_errors;
+                break;
+
             default:
                 throw new \Exception("No hay validación definida para la entidad: {$entity}");
         }
