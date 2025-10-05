@@ -14,11 +14,20 @@
           <a class="nav-link" href="<?= base_url() ?>">Inicio</a>
         </li>
 
+        <?php if (session()->get('user.rol') === 'CLIENTE'): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('productos/cart') ?>">
+              <i class="fa-solid fa-cart-shopping"></i> 
+            </a>
+          </li>
+        <?php endif; ?>
+      
         <?php if (session()->get('user.rol') === 'VENDEDOR'): ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('productos/crear') ?>">Crear producto</a>
           </li>
         <?php endif; ?>
+
       </ul>
 
       <span class="navbar-text">

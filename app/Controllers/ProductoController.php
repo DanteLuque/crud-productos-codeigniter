@@ -21,6 +21,11 @@ class ProductoController extends BaseController
     return view('productos/listar', $data);
   }
 
+  public function cart(): string 
+  {
+    return view('productos/cart/index');
+  }
+
   public function crear(): string
   {
     $catModel = new CatProducto();
