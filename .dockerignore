@@ -1,0 +1,9 @@
+.git
+.github
+vendor
+writable/cache/*
+writable/debugbar/*
+writable/logs/*
+node_modules
+*.md
+*.zip
