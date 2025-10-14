@@ -66,5 +66,5 @@ jobs:
         with:
           app-name: 'tiendita'
           slot-name: 'Production'
-          package: .
+          package: './public'
           
